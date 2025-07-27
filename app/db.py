@@ -2,7 +2,7 @@ import psycopg2
 from dotenv import load_dotenv
 import os
 
-load_dotenv(dotenv_path=".env/init.env") # crie um arquivo init.env e digite dentro dele suas credenciais.
+load_dotenv(dotenv_path="../.env/init.env") # crie um arquivo init.env e digite dentro dele suas credenciais.
 
 conexao = psycopg2.connect(
     host=os.getenv("DB_HOST"),
