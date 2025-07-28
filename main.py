@@ -1,28 +1,18 @@
 from kivy.app import App
-from kivy.uix.gridlayout import GridLayout
-from kivy.uix.label import Label
-from kivy.uix.textinput import TextInput
+from kivy.lang import Builder
+from kivy.properties import ObjectProperty
+from kivy.uix.boxlayout import BoxLayout
 
+Builder.load_file("./assets/UI/interface.kv")
 
-class LoginScreen(GridLayout):
+class MyFirstWidget(BoxLayout):
 
-    def __init__(self, **kwargs):
-        self.cols = 2
-        self.rows = 4
-        super(LoginScreen, self).__init__(**kwargs)
-        self.add_widget(Label(text='Insira seu nome'))
-        self.username = TextInput(multiline=False)
-        self.add_widget(self.username)
-        self.add_widget(Label(text='senha'))
-        self.password = TextInput(password=True, multiline=False)
-        self.add_widget(self.password)
+    txt_inpt = ObjectProperty(None)
 
 
 class MyApp(App):
-
     def build(self):
-        return LoginScreen()
-
+        return MyFirstWidget()
 
 if __name__ == '__main__':
     MyApp().run()

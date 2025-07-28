@@ -1,0 +1,62 @@
+<MyFirstWidget>:
+    FloatLayout:
+        canvas.before:
+            Color:
+                rgba: 0, 0, 1, 0.5
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        Video:
+            source: 'assets/videos/fundo.mp4'
+            options: {'eos': 'loop'}  # faz o vídeo repetir
+            state: 'play'
+            volume: 0
+            allow_stretch: True
+            keep_ratio: False
+            size_hint: 1, 1
+            pos: self.pos
+
+        BoxLayout:
+            orientation: 'vertical'
+            padding: 20
+            spacing: 20
+            size: 200, 200
+            size_hint: None, None
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+
+            TextInput:
+                size_hint: None, None
+                size: 200, 50
+                background_normal: ""
+                background_down: ""
+                background_color: 0, 0, 0, 0
+                foreground_color: 0, 0, 0, 1
+                cursor_color: 0, 0, 0, 1
+                canvas.before:
+                    Color:
+                        rgba: 0.98046875, 0.9140625, 0.99609375, 1
+                    RoundedRectangle:
+                        radius: [10]
+                        pos: self.pos
+                        size: self.size
+
+            TextInput:
+                size_hint: None, None
+                size: 200, 50
+                background_normal: ""
+                background_down: ""
+                background_color: 0, 0, 0, 0
+                canvas.before:
+                    Color:
+                        rgba: 0.98046875, 0.9140625, 0.99609375, 1
+                    RoundedRectangle:
+                        radius: [10]
+                        pos: self.pos
+                        size: self.size
+
+            Button:
+                size_hint: None, None
+                size: 200, 50
+                background_normal: ""
+                background_down: ""
