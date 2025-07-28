@@ -1,4 +1,4 @@
-<MyFirstWidget>:
+<RootWidget>:
     FloatLayout:
         canvas.before:
             Color:
@@ -8,8 +8,8 @@
                 size: self.size
 
         Video:
-            source: 'assets/videos/fundo.mp4'
-            options: {'eos': 'loop'}  # faz o vídeo repetir
+            source: './assets/videos/fundo_login.mp4'
+            options: {'eos': 'loop'}
             state: 'play'
             volume: 0
             allow_stretch: True
