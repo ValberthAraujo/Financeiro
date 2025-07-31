@@ -1,0 +1,19 @@
+<PopupConfirmar>
+    title: "Aviso"
+    size_hint: None, None
+    size: 300, 200
+    auto_dismiss: False
+
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 10
+        spacing: 10
+
+        Label:
+            text: "Seleção cancelada"
+
+        Button:
+            text: "Fechar"
+            size_hint_y: None
+            on_release: root.dismiss()
+            height: 40

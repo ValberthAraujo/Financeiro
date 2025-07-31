@@ -6,7 +6,7 @@ ScreenManager:
     name: 'tela_inicial'
     FloatLayout:
         Video:
-            source: './assets/videos/fundo_login.mp4'
+            source: './assets/video/fundo_login.mp4'
             options: {'eos': 'loop'}
             state: 'play'
             volume: 0
@@ -74,7 +74,7 @@ ScreenManager:
             Button:
                 size: 100, 100
                 size_hint: None, None
-                on_press: app.root.current = 'tela_inicial'
+                on_press: app.show_confirmation()
                 background_color: 0, 0, 0, 0
                 background_normal: ''
                 canvas.before:

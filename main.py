@@ -1,11 +1,8 @@
 import os
 os.environ['KIVY_VIDEO'] = 'ffpyplayer'
 
-from kivy.uix.screenmanager import Screen
-from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.button import Button
-from kivy.uix.label import Label
 from kivy.uix.popup import Popup
+from kivy.uix.screenmanager import Screen
 from kivy.app import App
 from kivy.lang import Builder
 from tkinter import filedialog
@@ -24,30 +21,20 @@ class TelaInicial(Screen):
 
         converter_dados(caminho_arquivo)
 
-class TelaPrincipal(Screen):
+class PopupConfirmar(Popup):
     pass
 
-Builder.load_file("assets/interface.kv")
+class TelaPrincipal(Screen):
+    pass
 
 class Aplicativo(App):
 
     def build(self):
-        return Builder.load_file("assets/interface.kv")
+        Builder.load_file("./assets/ui/widgets.kv")
+        return Builder.load_file("assets/UI/interface.kv")
 
-    @staticmethod
-    def show_popup():
-        content = BoxLayout(orientation='vertical', padding=10, spacing=10)
-        content.add_widget(Label(text="Seleção cancelada"))
-        btn = Button(text="Fechar", size_hint_y=None, height=40)
-        content.add_widget(btn)
-
-        popup = Popup(title="Aviso",
-                      content=content,
-                      size_hint=(None, None),
-                      size=(300, 200),
-                      auto_dismiss=False)
-
-        btn.bind(on_release=popup.dismiss)  # Fecha o popup ao clicar no botão
+    def show_confirmation(self):
+        popup = PopupConfirmar()
         popup.open()
 
 if __name__ == '__main__':
