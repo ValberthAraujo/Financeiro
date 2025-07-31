@@ -1,17 +1,15 @@
 import os
 os.environ['KIVY_VIDEO'] = 'ffpyplayer'
 
-from kivy.uix.image import Image
-from kivy.uix.screenmanager import ScreenManager, SlideTransition, Screen
+from kivy.uix.screenmanager import Screen
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
 from kivy.uix.label import Label
 from kivy.uix.popup import Popup
-from kivy.uix.floatlayout import FloatLayout
 from kivy.app import App
 from kivy.lang import Builder
 from tkinter import filedialog
-from app.conversores.csv import converter_dados
+from app.data_processing import converter_dados
 
 
 class TelaInicial(Screen):
@@ -29,12 +27,12 @@ class TelaInicial(Screen):
 class TelaPrincipal(Screen):
     pass
 
-Builder.load_file("./assets/UI/interface.kv")
+Builder.load_file("assets/interface.kv")
 
 class Aplicativo(App):
 
     def build(self):
-        return Builder.load_file("./assets/UI/interface.kv")
+        return Builder.load_file("assets/interface.kv")
 
     @staticmethod
     def show_popup():
