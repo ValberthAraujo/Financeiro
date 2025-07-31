@@ -1,29 +1,125 @@
-<RootWidget>:
-    Video:
-        source: './assets/videos/fundo_login.mp4'
-        options: {'eos': 'loop'}
-        state: 'play'
-        volume: 0
-        allow_stretch: True
-        keep_ratio: False
-        size_hint: 1, 1
-        pos: self.pos
+ScreenManager:
+    TelaInicial:
+    TelaPrincipal:
 
-    # Botão centralizado
-    Button:
-        id: 'escolher_arquivo'
-        size_hint: None, None
-        size: 200, 50
-        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-        on_press: root.selecionar_arquivo()
-        background_normal: ''
-        canvas:
+<TelaInicial>:
+    name: 'tela_inicial'
+    FloatLayout:
+        Video:
+            source: './assets/videos/fundo_login.mp4'
+            options: {'eos': 'loop'}
+            state: 'play'
+            volume: 0
+            allow_stretch: True
+            keep_ratio: False
+            size_hint: 1, 1
+            pos: self.pos
+
+        Button:
+            id: 'Entrar'
+            size_hint: 0.2, 0.1
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            background_normal: ''
+            background_color: 0,0,0,0
+            on_press: app.root.current = 'tela_principal'
+            canvas:
+                Color:
+                    rgba: 0.98046875, 0.9140625, 0.99609375, 1
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [10]
+        Label:
+            text: "Login XD"
+            color: 0,0,0,1
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+
+<TelaPrincipal>:
+    name: 'tela_principal'
+    FloatLayout:
+        canvas.before:
             Color:
-                rgba: 0.98046875, 0.9140625, 0.99609375, 1
+                rgba: 1, 1, 1, 1
             Rectangle:
                 pos: self.pos
-                size: self.size
-    Label:
-        text: "Escolher Arquivo"
-        color: 0,0,0,1
-        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                size: 160, self.width
+        BoxLayout:
+            orientation: 'vertical'
+            padding: 20
+            spacing: 40
+            pos: 10, root.height/2 - 330
+            Button:
+                size: 100, 100
+                size_hint: None, None
+                on_press: app.root.current = 'tela_inicial'
+                background_color: 0, 0, 0, 0
+                background_normal: ''
+
+                Image:
+                    source: './assets/img/importar_lancamentos.jpg'
+                    pos: self.pos
+                    size: self.size
+                    keep_ratio: False
+                    allow_stretch: True
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    canvas.after:
+                        Color:
+                            rgba: 0.484375, 0.72265625, 0.90625, 1
+                        RoundedRectangle:
+                            size: self.size
+                            pos: self.pos
+                            radius: [20]
+
+            Button:
+                size: 100, 100
+                size_hint: None, None
+                on_press: app.root.current = 'tela_inicial'
+                background_color: 0, 0, 0, 0
+                background_normal: ''
+                canvas.before:
+                    Color:
+                        rgba: 0.484375, 0.72265625, 0.90625, 1
+                    RoundedRectangle:
+                        size: self.size
+                        pos: self.pos
+                        radius: [10]
+            Button:
+                size: 100, 100
+                size_hint: None, None
+                on_press: app.root.current = 'tela_inicial'
+                background_color: 0, 0, 0, 0
+                background_normal: ''
+                canvas.before:
+                    Color:
+                        rgba: 0.484375, 0.72265625, 0.90625, 1
+                    RoundedRectangle:
+                        size: self.size
+                        pos: self.pos
+                        radius: [10]
+            Button:
+                size: 100, 100
+                size_hint: None, None
+                on_press: app.root.current = 'tela_inicial'
+                background_color: 0, 0, 0, 0
+                background_normal: ''
+                canvas.before:
+                    Color:
+                        rgba: 0.484375, 0.72265625, 0.90625, 1
+                    RoundedRectangle:
+                        size: self.size
+                        pos: self.pos
+                        radius: [10]
+            Button:
+                size: 100, 100
+                size_hint: None, None
+                on_press: app.root.current = 'tela_inicial'
+                background_color: 0, 0, 0, 0
+                background_normal: ''
+                canvas.before:
+                    Color:
+                        rgba: 0.484375, 0.72265625, 0.90625, 1
+                    RoundedRectangle:
+                        size: self.size
+                        pos: self.pos
+                        radius: [10]

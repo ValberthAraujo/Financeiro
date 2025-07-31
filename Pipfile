@@ -1,0 +1,17 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+kivy = "*"
+psycopg2 = "*"
+python-dotenv = "*"
+pandas = "*"
+ffpyplayer = "*"
+openpyxl = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.13"

@@ -1,6 +1,8 @@
 import os
 os.environ['KIVY_VIDEO'] = 'ffpyplayer'
 
+from kivy.uix.image import Image
+from kivy.uix.screenmanager import ScreenManager, SlideTransition, Screen
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
 from kivy.uix.label import Label
@@ -11,9 +13,8 @@ from kivy.lang import Builder
 from tkinter import filedialog
 from app.conversores.csv import converter_dados
 
-Builder.load_file("./assets/UI/interface.kv")
 
-class RootWidget(FloatLayout):
+class TelaInicial(Screen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
@@ -25,11 +26,15 @@ class RootWidget(FloatLayout):
 
         converter_dados(caminho_arquivo)
 
+class TelaPrincipal(Screen):
+    pass
+
+Builder.load_file("./assets/UI/interface.kv")
 
 class Aplicativo(App):
 
     def build(self):
-        return RootWidget()
+        return Builder.load_file("./assets/UI/interface.kv")
 
     @staticmethod
     def show_popup():
