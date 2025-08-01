@@ -1,19 +1,152 @@
-<PopupConfirmar>
-    title: "Aviso"
+<PopupAlterarDB>
+    title: "Cadastro do Banco de dados"
     size_hint: None, None
-    size: 300, 200
+    size: 500, 500
     auto_dismiss: False
 
     BoxLayout:
         orientation: 'vertical'
-        padding: 10
-        spacing: 10
 
+        BoxLayout:
+            Label:
+                text: "Host"
+                size_hint_x: 0.3
+                size_hint_y: 0.5
+
+            TextInput:
+                id: host
+                multiline: False
+                hint_text: "Digite o host, padrão: localhost."
+                size_hint_x: 0.7
+                size_hint_y: 0.5
+
+        BoxLayout:
+            Label:
+                text: "Porta"
+                size_hint_x: 0.3
+                size_hint_y: 0.5
+
+            TextInput:
+                id: porta
+                multiline: False
+                hint_text: "Digite a porta, padrão: 5432."
+                size_hint_x: 0.7
+                size_hint_y: 0.5
+
+        BoxLayout:
+            Label:
+                text: "Usuário"
+                size_hint_x: 0.3
+                size_hint_y: 0.5
+
+            TextInput:
+                id: user
+                multiline: False
+                hint_text: "Escolha o usuário do DB."
+                size_hint_x: 0.7
+                size_hint_y: 0.5
+
+        BoxLayout:
+            Label:
+                text: "Senha"
+                size_hint_x: 0.3
+                size_hint_y: 0.5
+
+            TextInput:
+                id: password
+                multiline: False
+                password: True
+                hint_text: "Digite sua senha."
+                size_hint_x: 0.7
+                size_hint_y: 0.5
+
+        BoxLayout:
+            Label:
+                text: "Database"
+                size_hint_x: 0.3
+                size_hint_y: 0.5
+
+            TextInput:
+                id: database
+                multiline: False
+                hint_text: "Digite o banco de dados usado"
+                size_hint_x: 0.7
+                size_hint_y: 0.5
+
+        BoxLayout:
+            padding: 20
+            spacing: 20
+            Button:
+                text: "Cancelar"
+                on_release: root.dismiss()
+                color: 0,0,0,1
+                background_color: 0, 0, 0, 0
+                canvas.before:
+                    Color:
+                        rgba: 1, 0, 0, 1
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [10]
+
+            Button:
+                text: "Confirmar"
+                id: confirmar_config
+                on_release:
+                    root.salvar_configuracoes_db(
+                    root.ids.host.text,
+                    root.ids.porta.text,
+                    root.ids.user.text,
+                    root.ids.password.text,
+                    root.ids.database.text
+                    )
+                height: 20
+                color: 0,0,0,1
+                background_color: 0, 0, 0, 0
+                canvas.before:
+                    Color:
+                        rgba: 0, 1, 0, 1
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [10]
+
+<PopupConfirmacao>
+    title: "Importar Lançamentos"
+    size_hint: None, None
+    size: 500, 200
+    auto_dismiss: False
+
+    BoxLayout:
+        orientation: 'vertical'
+        spacing: 20
         Label:
-            text: "Seleção cancelada"
-
-        Button:
-            text: "Fechar"
-            size_hint_y: None
-            on_release: root.dismiss()
-            height: 40
+            text: "Deseja importar arquivos à sua base de dados?"
+        BoxLayout:
+            spacing: 20
+            Button:
+                text: "Confirmar"
+                height: 20
+                on_release: root.dismiss()
+                color: 0,0,0,1
+                background_color: 0, 0, 0, 0
+                canvas.before:
+                    Color:
+                        rgba: 0, 1, 0, 1
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [10]
+            Button:
+                text: "Cancelar"
+                height: 20
+                on_release: root.dismiss()
+                color: 0,0,0,1
+                background_color: 0, 0, 0, 0
+                canvas.before:
+                    Color:
+                        rgba: 1, 0, 0, 1
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [10]
