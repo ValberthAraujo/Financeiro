@@ -13,13 +13,13 @@ from tkinter import filedialog
 
 
 class PopupConfirmacao(Popup):
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        self.foi_confirmado = False
-
     def confirmar(self):
-        self.foi_confirmado = True
         self.dismiss()
+        caminho_arquivo = filedialog.askopenfilename(
+            title="Selecione um arquivo",
+            filetypes=[("Todos os arquivos", "*.*")]
+        )
+        converter_dados(caminho_arquivo)
 
 class PopupAlterarDB(Popup):
     def __init__(self, **kwargs):
@@ -69,16 +69,7 @@ class TelaInicial(Screen):
 class TelaPrincipal(Screen):
 
     def selecionar_arquivo(self):
-        popup = PopupConfirmacao()
-        popup.open()
-        if popup.foi_confirmado == True:
-            caminho_arquivo = filedialog.askopenfilename(
-                title="Selecione um arquivo",
-                filetypes=[("Arquivo Excel", "*.xlsx")]
-            )
-            converter_dados(caminho_arquivo)
-        else:
-            return
+        return PopupConfirmacao().open()
 
 class Aplicativo(App):
 

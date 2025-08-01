@@ -125,19 +125,6 @@
         BoxLayout:
             spacing: 20
             Button:
-                text: "Confirmar"
-                height: 20
-                on_release: root.dismiss()
-                color: 0,0,0,1
-                background_color: 0, 0, 0, 0
-                canvas.before:
-                    Color:
-                        rgba: 0, 1, 0, 1
-                    RoundedRectangle:
-                        pos: self.pos
-                        size: self.size
-                        radius: [10]
-            Button:
                 text: "Cancelar"
                 height: 20
                 on_release: root.dismiss()
@@ -146,6 +133,19 @@
                 canvas.before:
                     Color:
                         rgba: 1, 0, 0, 1
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [10]
+            Button:
+                text: "Confirmar"
+                height: 20
+                on_release: root.confirmar()
+                color: 0,0,0,1
+                background_color: 0, 0, 0, 0
+                canvas.before:
+                    Color:
+                        rgba: 0, 1, 0, 1
                     RoundedRectangle:
                         pos: self.pos
                         size: self.size
