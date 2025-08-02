@@ -10,6 +10,7 @@ python-dotenv = "*"
 pandas = "*"
 ffpyplayer = "*"
 openpyxl = "*"
+pdfplumber = "*"
 
 [dev-packages]
 

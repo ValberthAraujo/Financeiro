@@ -150,3 +150,32 @@
                         pos: self.pos
                         size: self.size
                         radius: [10]
+
+<PopupErro>
+    title: "Selecione o arquivo corretamente!"
+    size_hint: None, None
+    size: 400, 200
+    auto_dismiss: False
+
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 20
+        Label:
+            text: ""
+            size_hint_y: 0.7
+        Button:
+            text: "Ok"
+            color: 0,0,0,1
+            size_hint_y: None
+            height: 40
+            width: self.width
+            background_color: 0, 0, 0, 0
+            pos: self.pos
+            on_release: root.dismiss()
+            canvas.before:
+                Color:
+                    rgba: 0,1,0,1
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [10]

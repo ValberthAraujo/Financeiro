@@ -9,6 +9,9 @@ from kivy.core.window import Window
 from tkinter import filedialog
 
 
+class PopupErro(Popup):
+    pass
+
 class PopupConfirmacao(Popup):
     def confirmar(self):
         self.dismiss()
@@ -16,7 +19,12 @@ class PopupConfirmacao(Popup):
             title="Selecione um arquivo",
             filetypes=[("Todos os arquivos", "*.*")]
         )
-        converter_dados(caminho_arquivo)
+
+        if caminho_arquivo != '':
+            converter_dados(caminho_arquivo)
+        else:
+            PopupErro().open()
+
 
 class PopupAlterarDB(Popup):
     def __init__(self, **kwargs):
