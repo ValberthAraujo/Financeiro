@@ -1,8 +1,5 @@
 import pandas as pd
 import pdfplumber as pl
-from pandas.core.window import Expanding
-
-caminho = "../../example.pdf"
 
 def processar_extrato(caminho_pdf: str, pag_index: int, nome_usuario: str):
     extrato = []
@@ -29,4 +26,6 @@ def processar_extrato(caminho_pdf: str, pag_index: int, nome_usuario: str):
 
             extrato.append((data, lancamento_principal, valor))
 
-    return extrato
+        df = pd.DataFrame(extrato)
+
+        print(df)
