@@ -25,18 +25,8 @@ def processar_extrato(caminho_pdf: str, pag_index: int, nome_usuario: str):
 
             data = f"{ano}-{lancamento[0:5].replace("/", "-")}"
             lancamento_principal = lancamento[6:posicao_valor-1]
-
-            try:
-                with lancamento[posicao_valor:] as valor_inicial:
-                    if "," in valor_inicial:
-                        valor = valor_inicial.replace(",", ".")
-                    else:
-                        valor = valor_inicial
-            except:
-                valor = "0.00"
-
+            valor = lancamento[posicao_valor:].replace(",", ".")
 
             extrato.append((data, lancamento_principal, valor))
-    return extrato
 
-print(processar_extrato(caminho, 1, "VALBERTH"))
+    return extrato

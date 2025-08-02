@@ -1,4 +1,4 @@
-from app.controller.data_processing import converter_dados
+from app.controller.data_processing import processar_extrato
 
 from kivy.uix.popup import Popup
 from kivy.uix.screenmanager import Screen
@@ -21,7 +21,7 @@ class PopupConfirmacao(Popup):
         )
 
         if caminho_arquivo != '':
-            converter_dados(caminho_arquivo)
+            print(processar_extrato(caminho_arquivo, 1, "VALBERTH"))
         else:
             PopupErro().open()
 
