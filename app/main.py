@@ -1,7 +1,4 @@
-import os.path
-
-import app.config
-from app.data_processing import converter_dados
+from app.controller.data_processing import converter_dados
 
 from kivy.uix.popup import Popup
 from kivy.uix.screenmanager import Screen
@@ -51,7 +48,7 @@ class PopupAlterarDB(Popup):
             self.ids.confirmar_config.trigger_action()
 
     def salvar_configuracoes_db(self, host, porta, user, senha, base_dados):
-        with open('init.env', 'w') as env:
+        with open('../init.env', 'w') as env:
             env.write(f'DB_HOST={host}\n')
             env.write(f'DB_PORT={porta}\n')
             env.write(f'DB_USER={user}\n')
@@ -74,8 +71,8 @@ class TelaPrincipal(Screen):
 class Aplicativo(App):
 
     def build(self):
-        Builder.load_file("assets/UI/widgets.kv")
-        return Builder.load_file("assets/UI/interface.kv")
+        Builder.load_file("view/widgets.kv")
+        return Builder.load_file("view/interface.kv")
 
 if __name__ == '__main__':
     Aplicativo().run()
