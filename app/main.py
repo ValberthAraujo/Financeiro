@@ -1,5 +1,4 @@
 import os
-import time
 
 from app.controller.data_processing import processar_extrato
 
@@ -18,7 +17,8 @@ class PopupErro(Popup):
     pass
 
 class PopupConfirmacao(Popup):
-    def confirmar(self):
+    @staticmethod
+    def confirmar():
 
         caminho_arquivo = filedialog.askopenfilename(
             title="Selecione um arquivo",
@@ -28,6 +28,7 @@ class PopupConfirmacao(Popup):
         if caminho_arquivo != '':
             dados = processar_extrato(caminho_arquivo, "VALBERTH")
             conexao = criar_conexao(os.getcwd())
+
         else:
             PopupErro().open()
 
@@ -71,12 +72,14 @@ class TelaInicial(Screen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
-    def cadastrar_db(self):
+    @staticmethod
+    def cadastrar_db():
         PopupAlterarDB().open()
 
 class TelaPrincipal(Screen):
 
-    def selecionar_arquivo(self):
+    @staticmethod
+    def selecionar_arquivo():
         return PopupConfirmacao().open()
 
 class Aplicativo(App):
