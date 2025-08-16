@@ -2,15 +2,16 @@ import psycopg2
 from dotenv import load_dotenv
 import os
 
-load_dotenv(dotenv_path=r"/.env/init.env") # crie um arquivo init.env e digite dentro dele suas credenciais.
+def criar_conexao(env: str):
+    load_dotenv(dotenv_path=env)
 
-conexao_global = psycopg2.connect(
-    host=os.getenv("DB_HOST"),
-    port=os.getenv("DB_PORT"),
-    user=os.getenv("DB_USER"),
-    password=os.getenv("DB_PASSWORD"),
-    dbname=os.getenv("DB_BASEDADOS")
-)
+    return psycopg2.connect(
+        host=os.getenv("DB_HOST"),
+        port=os.getenv("DB_PORT"),
+        user=os.getenv("DB_USER"),
+        password=os.getenv("DB_PASSWORD"),
+        dbname=os.getenv("DB_BASEDADOS")
+    )
 
 def criar_lancamentos_global(conexao):
     with conexao.cursor() as cursor:

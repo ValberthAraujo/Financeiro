@@ -1,11 +1,11 @@
 import pandas as pd
 import pdfplumber as pl
 
-def processar_extrato(caminho_pdf: str, pag_index: int, nome_usuario: str):
+def processar_extrato(caminho_pdf: str, nome_usuario: str):
     extrato = []
 
     with pl.open(caminho_pdf) as pdf:
-        pag_principal = pdf.pages[pag_index]
+        pag_principal = pdf.pages[1]
 
         try:
             tabela_bruta = pag_principal.extract_table()[1][0].split("\n")
@@ -21,11 +21,9 @@ def processar_extrato(caminho_pdf: str, pag_index: int, nome_usuario: str):
             posicao_valor = len(lancamento) - lancamento[::-1].index(" ")
 
             data = f"{ano}-{lancamento[0:5].replace("/", "-")}"
-            lancamento_principal = lancamento[6:posicao_valor-1]
+            historico = lancamento[6:posicao_valor-1]
             valor = lancamento[posicao_valor:].replace(",", ".")
 
-            extrato.append((data, lancamento_principal, valor))
+            extrato.append((data, historico, valor))
 
-        df = pd.DataFrame(extrato)
-
-        print(df)
+        return pd.DataFrame(extrato, columns=["Data", "Historico", "Valor"])

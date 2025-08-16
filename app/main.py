@@ -1,3 +1,6 @@
+import os
+import time
+
 from app.controller.data_processing import processar_extrato
 
 from kivy.uix.popup import Popup
@@ -8,20 +11,23 @@ from kivy.core.window import Window
 
 from tkinter import filedialog
 
+from app.model.database_manager import criar_conexao
+
 
 class PopupErro(Popup):
     pass
 
 class PopupConfirmacao(Popup):
     def confirmar(self):
-        self.dismiss()
+
         caminho_arquivo = filedialog.askopenfilename(
             title="Selecione um arquivo",
             filetypes=[("Todos os arquivos", "*.*")]
         )
 
         if caminho_arquivo != '':
-            print(processar_extrato(caminho_arquivo, 1, "VALBERTH"))
+            dados = processar_extrato(caminho_arquivo, "VALBERTH")
+            conexao = criar_conexao(os.getcwd())
         else:
             PopupErro().open()
 
@@ -30,9 +36,8 @@ class PopupAlterarDB(Popup):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         Window.bind(on_key_down=self.trocar_linha_tab)
-        Window.bind(on_key_down=self.confirmar_config_enter)
 
-    def trocar_linha_tab(self, window, key, scancode, codepoint, modifier):
+    def trocar_linha_tab(self, _, key, *__):
         if key == 9:
             if self.ids.host.focus:
                 self.ids.porta.focus = True
@@ -51,12 +56,10 @@ class PopupAlterarDB(Popup):
                 return True
         return False
 
-    def confirmar_config_enter(self, window, key, scancode, codepoint, modifier):
-        if key == 13:
-            self.ids.confirmar_config.trigger_action()
-
     def salvar_configuracoes_db(self, host, porta, user, senha, base_dados):
-        with open('../init.env', 'w') as env:
+        env_path = os.path.join(os.getcwd(), "init.env")
+
+        with open(env_path, 'w') as env:
             env.write(f'DB_HOST={host}\n')
             env.write(f'DB_PORT={porta}\n')
             env.write(f'DB_USER={user}\n')
